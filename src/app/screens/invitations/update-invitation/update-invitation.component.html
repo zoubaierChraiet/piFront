@@ -1,0 +1,50 @@
+<h2 class="login-title">S'inscrire</h2>
+<mat-card class="form-card">
+  <div class="example-container">
+    <form
+      #Signup="ngForm"
+      [formGroup]="updateInvitationForm"
+      (ngSubmit)="onSubmit(Signup.value)"
+    >
+      <mat-form-field appearance="fill" class="fullWidth">
+        <mat-label>Nom de l'entreprise</mat-label>
+        <input matInput type="text" formControlName="nom" name="nom" id="nom" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Domaine d'activité</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="domaine"
+          name="domaine"
+          id="domaine"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Matricule</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="matricule"
+          name="matricule"
+          id="matricule"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Objet voyage</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="objetVoyage"
+          name="objetVoyage"
+          id="objetVoyage"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Tel</mat-label>
+        <input matInput type="tel" formControlName="tel" name="tel" id="tel" />
+      </mat-form-field>
+      <button mat-flat-button color="primary">S'inscrire</button>
+    </form>
+  </div>
+</mat-card>

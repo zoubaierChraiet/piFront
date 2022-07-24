@@ -1,0 +1,17 @@
+.example-container .mat-form-field + .mat-form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-card {
+    width: 50%;
+    margin: auto;
+}
+
+.login-title {
+    margin-top: 50px !important;
+    margin-bottom: 20px !important;
+    width: fit-content;
+    margin: auto;
+}
