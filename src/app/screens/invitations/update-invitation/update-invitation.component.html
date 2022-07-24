@@ -7,44 +7,40 @@
       (ngSubmit)="onSubmit(Signup.value)"
     >
       <mat-form-field appearance="fill" class="fullWidth">
-        <mat-label>Nom de l'entreprise</mat-label>
-        <input matInput type="text" formControlName="nom" name="nom" id="nom" />
+        <mat-label>Titre</mat-label>
+        <input matInput type="text" formControlName="titre" name="titre" id="titre" />
       </mat-form-field>
       <mat-form-field appearance="fill">
-        <mat-label>Domaine d'activité</mat-label>
+        <mat-label>Entreprise</mat-label>
         <input
           matInput
           type="text"
-          formControlName="domaine"
-          name="domaine"
-          id="domaine"
+          formControlName="entrepriseinvit"
+          name="entrepriseinvit"
+          id="entrepriseinvit"
         />
       </mat-form-field>
       <mat-form-field appearance="fill">
-        <mat-label>Matricule</mat-label>
+        <mat-label>Mail</mat-label>
         <input
           matInput
           type="text"
-          formControlName="matricule"
-          name="matricule"
-          id="matricule"
+          formControlName="mail"
+          name="mail"
+          id="mail"
         />
       </mat-form-field>
       <mat-form-field appearance="fill">
-        <mat-label>Objet voyage</mat-label>
+        <mat-label>Date invitation</mat-label>
         <input
           matInput
           type="text"
-          formControlName="objetVoyage"
-          name="objetVoyage"
-          id="objetVoyage"
+          formControlName="dateInvit"
+          name="dateInvit"
+          id="dateInvit"
         />
       </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Tel</mat-label>
-        <input matInput type="tel" formControlName="tel" name="tel" id="tel" />
-      </mat-form-field>
-      <button mat-flat-button color="primary">S'inscrire</button>
+      <button mat-flat-button color="primary">Modifier</button>
     </form>
   </div>
 </mat-card>
