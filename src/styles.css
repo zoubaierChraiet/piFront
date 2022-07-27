@@ -6,5 +6,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     width: 100%;
 }
 
+.flexColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.flexColumnFullHeight {
+    display: flex;
+    flex-direction: column;
+    height: 100%
+}
+
+.takeTheRest {
+    flex-grow: 1;
+}
+
 @import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
 

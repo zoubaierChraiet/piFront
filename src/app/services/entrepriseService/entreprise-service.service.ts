@@ -12,4 +12,8 @@ export class EntrepriseServiceService {
   signUp(entreprise: any) {
     return this.http.post(`${this.url}/addEntreprise`, entreprise);
   }
+
+  getById(id: string) {
+    return this.http.get(`${this.url}/recupererEntreprise/${id}`);
+  }
 }

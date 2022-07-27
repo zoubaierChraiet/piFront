@@ -1,0 +1,26 @@
+<h2 class="login-title">Invitez employe</h2>
+<mat-card class="form-card">
+  <div class="example-container">
+    <form
+      #Signup="ngForm"
+      [formGroup]="addInvitationForm"
+      (ngSubmit)="onSubmit(Signup.value)"
+    >
+      <mat-form-field appearance="fill" class="fullWidth">
+        <mat-label>Titre</mat-label>
+        <input matInput type="text" formControlName="titre" name="titre" id="titre" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Mail</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="mail"
+          name="mail"
+          id="mail"
+        />
+      </mat-form-field>
+      <button mat-flat-button color="primary">Inviter</button>
+    </form>
+  </div>
+</mat-card>

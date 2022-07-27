@@ -24,4 +24,8 @@ export class InvitationsService {
   update(invitation: any) {
     return this.http.put(`${this.url}/modifierInvitation`, invitation);
   }
+
+  add(invitation: any) {
+    return this.http.post(`${this.url}/addInvitation`, invitation);
+  }
 }

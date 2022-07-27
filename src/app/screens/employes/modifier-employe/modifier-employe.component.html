@@ -1,0 +1,56 @@
+<h2 class="login-title">Modification employe</h2>
+<mat-card class="form-card">
+  <div class="example-container">
+    <form
+      #Signup="ngForm"
+      [formGroup]="updateEmployerForm"
+      (ngSubmit)="onSubmit(Signup.value)"
+    >
+      <mat-form-field appearance="fill" class="fullWidth">
+        <mat-label>Nom</mat-label>
+        <input matInput type="text" formControlName="nom" name="nom" id="nom" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Login</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="login"
+          name="login"
+          id="login"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Tel</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="tel"
+          name="tel"
+          id="tel"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Selctionnez profession</mat-label>
+        <select matNativeControl required [formControl]="selectFormControl">
+          <option label="--selectionnez objet voyage --"></option>
+          <option value="Senior_consultant">Consultant Senior</option>
+          <option value="junior_conusltant">Consultant junior</option>
+          <option value="TeamLeader">Team leader</option>
+          <option value="manager">Manager</option>
+        </select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Mot de passe</mat-label>
+        <input
+          matInput
+          type="password"
+          formControlName="mdp"
+          name="mdp"
+          id="mdp"
+        />
+      </mat-form-field>
+      <button mat-flat-button color="primary">Modifier</button>
+    </form>
+  </div>
+</mat-card>

@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormControl,
-  Validators,
-  FormBuilder,
-  FormGroup,
-} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EntrepriseServiceService } from 'src/app/services/entrepriseService/entreprise-service.service';
 
 @Component({
@@ -13,19 +8,22 @@ import { EntrepriseServiceService } from 'src/app/services/entrepriseService/ent
   styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent implements OnInit {
-  signUpForm: FormGroup = this.formBuilder.group({});
-  nom: string = '';
-  matricule: string = '';
-  domaine: string = '';
-  objetVoyage: string = '';
-  tel: string = '';
+  signUpForm: FormGroup = this.formBuilder.group({
+    nom: '',
+    matricule: '',
+    domaine: '',
+    objetVoyage: '',
+    tel: '',
+  });
+
+  selectFormControl = new FormControl('objetVoyage');
 
   loading = false;
   submitted = false;
 
   constructor(
     private formBuilder: FormBuilder,
-    private entrepriseService: EntrepriseServiceService,
+    private entrepriseService: EntrepriseServiceService
   ) {}
 
   ngOnInit(): void {
@@ -40,15 +38,15 @@ export class SignUpComponent implements OnInit {
 
   onSubmit(form: any): void {
     let entrepriseData = {
-      nomEntreprise : form.nom,
-      matrciule : form.matricule,
-      objetVoyage : 'semianire',
-      tel : form.tel,
-      domaineAcitivites : form.domaine,
-    }
-    this.entrepriseService.signUp(entrepriseData).subscribe(data => {
-      console.log(data)
-    })
+      nomEntreprise: form.nom,
+      matrciule: form.matricule,
+      objetVoyage: this.selectFormControl.value,
+      tel: form.tel,
+      domaineAcitivites: form.domaine,
+    };
+    this.entrepriseService.signUp(entrepriseData).subscribe((data) => {
+      console.log(data);
+    });
   }
 
   getErrorMessage() {}

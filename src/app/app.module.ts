@@ -18,9 +18,12 @@ import { MatInputModule } from '@angular/material/input';
 import { SignUpComponent } from './screens/sign-up/sign-up.component';
 import { ListInvitationsComponent } from './screens/invitations/list-invitations/list-invitations.component';
 import { UpdateInvitationComponent } from './screens/invitations/update-invitation/update-invitation.component';
+import { EmployerComponent } from './screens/employes/employer/employer.component';
+import { ModifierEmployeComponent } from './screens/employes/modifier-employe/modifier-employe.component';
+import { AddInvitationComponent } from './screens/invitations/add-invitation/add-invitation.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SignUpComponent, ListInvitationsComponent, UpdateInvitationComponent],
+  declarations: [AppComponent, LoginComponent, SignUpComponent, ListInvitationsComponent, UpdateInvitationComponent, EmployerComponent, ModifierEmployeComponent, AddInvitationComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -31,8 +34,11 @@ import { UpdateInvitationComponent } from './screens/invitations/update-invitati
     MatTableModule,
     RouterModule.forRoot([
       { path: 'sign-up', component: SignUpComponent },
+      { path: 'add-invitation', component: AddInvitationComponent },
       { path: 'liste-invitations', component: ListInvitationsComponent },
       { path: 'update-invitation/:idInvitation', component: UpdateInvitationComponent },
+      { path: 'update-employe/:idEmploye', component: ModifierEmployeComponent },
+      { path: 'liste-employes', component: EmployerComponent },
       { path: '**', component: LoginComponent },
     ]),
     MatButtonModule,
