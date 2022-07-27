@@ -1,5 +1,10 @@
-import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Inject, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 import { InvitationsService } from 'src/app/services/invitationsService/invitations.service';
@@ -11,6 +16,11 @@ interface Invitation {
   idInvitation: string;
   mail: string;
   titre: string;
+}
+
+interface DialogData {
+  invitation: any;
+  invitationsList: any;
 }
 
 @Component({
@@ -26,9 +36,10 @@ export class ListInvitationsComponent implements OnInit {
   constructor(
     private invitationsService: InvitationsService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public dialog: MatDialog
   ) {}
-
+  invitation: any;
   invitationsList: Invitation[] = [];
   displayedColumns: string[] = [
     'idInvitation',
@@ -44,14 +55,27 @@ export class ListInvitationsComponent implements OnInit {
     });
   }
 
-  handleDelete(invitation: any) {
-    this.invitationsService
-      .delete(invitation.idInvitation)
-      .subscribe((data) => {
+  handleDelete(elem: any) {
+    this.invitation = elem;
+    this.openDialog();
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '300px',
+      data: {
+        invitationsList: this.invitationsList,
+        invitation: this.invitation,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result.deleted) {
         this.invitationsList = this.invitationsList.filter(
-          (x) => x.idInvitation !== invitation.idInvitation
+          (x: any) => x.idInvitation !== this.invitation.idInvitation
         );
-      });
+      }
+    });
   }
 
   handleRedirectToEdit(invitation: any) {
@@ -73,5 +97,36 @@ export class ListInvitationsComponent implements OnInit {
       }
     });
     return;
+  }
+}
+
+@Component({
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: 'dialog-confirm.html',
+})
+export class DialogOverviewExampleDialog {
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private invitationsService: InvitationsService
+  ) {}
+
+  onNoClick(): void {
+    this.dialogRef.close({ deleted: false });
+  }
+
+  handleDelete() {
+    this.invitationsService
+      .delete(this.data.invitation.idInvitation)
+      .subscribe((res) => {
+        this.data.invitationsList = this.data.invitationsList.filter(
+          (x: any) => x.idInvitation !== this.data.invitation.idInvitation
+        );
+      });
+  }
+
+  OnConfirm(): void {
+    this.handleDelete();
+    this.dialogRef.close({ deleted: true });
   }
 }

@@ -4,6 +4,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table'  
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatDividerModule} from '@angular/material/divider';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './screens/login/login.component';
@@ -46,7 +48,9 @@ import { AddInvitationComponent } from './screens/invitations/add-invitation/add
     MatToolbarModule,
     MatIconModule,
     MatCardModule,
+    MatDialogModule,
     MatFormFieldModule,
+    MatDividerModule,
     MatInputModule,
   ],
   exports: [

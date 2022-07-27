@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Confirmez</h1>
+<div mat-dialog-content>
+  <p>Voulez vous vraiment supprimez cet element</p>
+</div>
+<div mat-dialog-actions style="display: flex; gap: 10px">
+  <button mat-button (click)="onNoClick()">Non</button>
+  <button mat-flat-button color="primary" (click)="OnConfirm()" cdkFocusInitial>
+    Ok
+  </button>
+</div>
