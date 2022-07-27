@@ -1,0 +1,62 @@
+<div>
+  <h2 class="login-title">Modifier votre profile</h2>
+  <mat-card class="form-card">
+    <div class="example-container">
+      <form
+        #Signup="ngForm"
+        [formGroup]="updateForm"
+        (ngSubmit)="onSubmit(Signup.value)"
+      >
+        <mat-form-field appearance="fill" class="fullWidth">
+          <mat-label>Nom de l'entreprise</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="nom"
+            name="nom"
+            id="nom"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Domaine d'activité</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="domaine"
+            name="domaine"
+            id="domaine"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Matricule</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="matricule"
+            name="matricule"
+            id="matricule"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Selctionnez object voyage</mat-label>
+          <select matNativeControl required [formControl]="selectFormControl">
+            <option label="--selectionnez objet voyage --"></option>
+            <option value="semianire">Séminaire</option>
+            <option value="visite_entreprise">Visite entreprise</option>
+          </select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Tel</mat-label>
+          <input
+            matInput
+            type="tel"
+            formControlName="tel"
+            name="tel"
+            id="tel"
+          />
+        </mat-form-field>
+        <button mat-flat-button color="primary">Modifier</button>
+      </form>
+    </div>
+  </mat-card>
+</div>

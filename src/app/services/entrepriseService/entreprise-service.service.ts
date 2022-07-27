@@ -13,6 +13,10 @@ export class EntrepriseServiceService {
     return this.http.post(`${this.url}/addEntreprise`, entreprise);
   }
 
+  update(entreprise: any) {
+    return this.http.put(`${this.url}/modifierEntreprise`, entreprise);
+  }
+
   getById(id: string) {
     return this.http.get(`${this.url}/recupererEntreprise/${id}`);
   }

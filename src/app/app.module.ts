@@ -17,15 +17,16 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { SignUpComponent } from './screens/sign-up/sign-up.component';
+import { SignUpComponent } from './screens/entreprise/sign-up/sign-up.component';
 import { ListInvitationsComponent } from './screens/invitations/list-invitations/list-invitations.component';
 import { UpdateInvitationComponent } from './screens/invitations/update-invitation/update-invitation.component';
 import { EmployerComponent } from './screens/employes/employer/employer.component';
 import { ModifierEmployeComponent } from './screens/employes/modifier-employe/modifier-employe.component';
 import { AddInvitationComponent } from './screens/invitations/add-invitation/add-invitation.component';
+import { UpdateEntrepriseComponent } from './screens/entreprise/update-entreprise/update-entreprise.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SignUpComponent, ListInvitationsComponent, UpdateInvitationComponent, EmployerComponent, ModifierEmployeComponent, AddInvitationComponent],
+  declarations: [AppComponent, LoginComponent, SignUpComponent, ListInvitationsComponent, UpdateInvitationComponent, EmployerComponent, ModifierEmployeComponent, AddInvitationComponent, UpdateEntrepriseComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -39,6 +40,7 @@ import { AddInvitationComponent } from './screens/invitations/add-invitation/add
       { path: 'add-invitation', component: AddInvitationComponent },
       { path: 'liste-invitations', component: ListInvitationsComponent },
       { path: 'update-invitation/:idInvitation', component: UpdateInvitationComponent },
+      { path: 'update-entreprise/:idEntreprise', component: UpdateEntrepriseComponent },
       { path: 'update-employe/:idEmploye', component: ModifierEmployeComponent },
       { path: 'liste-employes', component: EmployerComponent },
       { path: '**', component: LoginComponent },
