@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './screens/login/login.component';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -46,6 +47,7 @@ import { UpdateEntrepriseComponent } from './screens/entreprise/update-entrepris
       { path: '**', component: LoginComponent },
     ]),
     MatButtonModule,
+    MatSnackBarModule,
     MatMenuModule,
     MatToolbarModule,
     MatIconModule,

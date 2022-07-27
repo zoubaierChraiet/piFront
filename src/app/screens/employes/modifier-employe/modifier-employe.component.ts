@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmployerService } from 'src/app/services/employerService/employer.service';
 
@@ -22,6 +23,10 @@ export class ModifierEmployeComponent implements OnInit {
   profession: string = '';
   mdp: string = '';
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {duration: 3000, verticalPosition: 'top'});
+  }
+
   selectFormControl = new FormControl('');
 
   idEmploye: string = "" ;
@@ -33,6 +38,8 @@ export class ModifierEmployeComponent implements OnInit {
     private formBuilder: FormBuilder,
     private employeService: EmployerService,
     private activatedRoute: ActivatedRoute,
+    private _snackBar: MatSnackBar,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -60,7 +67,9 @@ export class ModifierEmployeComponent implements OnInit {
       idEmploye: this.idEmploye,
       profession: this.selectFormControl.value,
     }
-    this.employeService.update(employeData).subscribe();
-    window.location.href = '/liste-employes'
+    this.employeService.update(employeData).subscribe(() => {
+      this.router.navigate(['/liste-employes'])
+      this.openSnackBar("Employé modifier avec succée", 'fermer')
+    });
   }
 }

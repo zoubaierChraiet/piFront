@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { InvitationsService } from 'src/app/services/invitationsService/invitations.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-update-invitation',
@@ -20,6 +21,10 @@ export class UpdateInvitationComponent implements OnInit {
   mail: string = '';
   titre: string = '';
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {duration: 3000, verticalPosition: 'top'});
+  }
+
   idInvitation: string = "" ;
 
   loading = false;
@@ -29,7 +34,8 @@ export class UpdateInvitationComponent implements OnInit {
     private formBuilder: FormBuilder,
     private invitationsService: InvitationsService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
+    private _snackBar: MatSnackBar,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -55,8 +61,10 @@ export class UpdateInvitationComponent implements OnInit {
       titre: invitation.titre,
       idInvitation: this.idInvitation
     }
-    this.invitationsService.update(invitationData).subscribe();
-    window.location.href = '/liste-invitations'
+    this.invitationsService.update(invitationData).subscribe(() => {
+      this.router.navigate(['/liste-invitations'])
+      this.openSnackBar("Invitation modifier avec succée", 'fermer')
+    });
   }
 
 }

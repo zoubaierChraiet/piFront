@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { EntrepriseServiceService } from 'src/app/services/entrepriseService/entreprise-service.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-update-entreprise',
@@ -17,6 +18,10 @@ export class UpdateEntrepriseComponent implements OnInit {
     tel: '',
   });
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {duration: 3000, verticalPosition: 'top'});
+  }
+
   selectFormControl = new FormControl('objetVoyage');
 
   idEntreprise: string = "" ;
@@ -26,7 +31,8 @@ export class UpdateEntrepriseComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
-    private entrepriseService: EntrepriseServiceService
+    private entrepriseService: EntrepriseServiceService,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -57,7 +63,8 @@ export class UpdateEntrepriseComponent implements OnInit {
       idEntreprise: this.idEntreprise
     };
     this.entrepriseService.update(entrepriseData).subscribe(() => {
-      window.location.href = '/update-entreprise/' + this.idEntreprise
+      // window.location.href = '/update-entreprise/' + this.idEntreprise
+      this.openSnackBar("Profile modifier avec succée", 'fermer')
     });
   }
 
