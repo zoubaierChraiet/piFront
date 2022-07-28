@@ -51,7 +51,12 @@ export class ListInvitationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.invitationsService.getAll().subscribe((res: any) => {
-      this.invitationsList = res;
+      const entreprise = localStorage.getItem('user');
+      const parsedEntreprise: any = JSON.parse(entreprise as string);
+      this.invitationsList = res.filter(
+        (x: any) =>
+          x.entrepriseinvit.idEntreprise === parsedEntreprise?.idEntreprise
+      );
     });
   }
 
@@ -80,6 +85,10 @@ export class ListInvitationsComponent implements OnInit {
 
   handleRedirectToEdit(invitation: any) {
     this.router.navigate([`/update-invitation/${invitation.idInvitation}`]);
+  }
+
+  addInvitation() {
+    this.router.navigate([`/add-invitation`]);
   }
 
   ngOnChanges(text: SimpleChanges) {

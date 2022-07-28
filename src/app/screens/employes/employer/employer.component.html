@@ -54,5 +54,8 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
+    <div class="list-title" style="margin-top: 10px;">
+      <button mat-raised-button color="primary" (click)="addInvitation()">Inviter un employer</button>
+    </div>
   </div>
   

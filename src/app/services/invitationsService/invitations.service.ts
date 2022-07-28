@@ -28,4 +28,8 @@ export class InvitationsService {
   add(invitation: any) {
     return this.http.post(`${this.url}/addInvitation`, invitation);
   }
+
+  invite(email: any, idEmploye: any) {
+    return this.http.get(`http://localhost:8086/Voyage/sendSimpleEmail/${email}/${idEmploye}`);
+  }
 }

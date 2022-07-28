@@ -13,6 +13,10 @@ export class EmployerService {
     return this.http.get(`${this.url}/listeEmployes`);
   }
 
+  add(employe: any) {
+    return this.http.post(`${this.url}/addEmploye`, employe);
+  }
+
   getById(id: string) {
     return this.http.get(`${this.url}/recupererEmploye/${id}`);
   }
@@ -21,7 +25,7 @@ export class EmployerService {
     return this.http.delete(`${this.url}/supprimerEmploye/${id}`);
   }
 
-  update(invitation: any) {
-    return this.http.put(`${this.url}/modifierEmploye`, invitation);
+  update(employe: any) {
+    return this.http.put(`${this.url}/modifierEmploye`, employe);
   }
 }

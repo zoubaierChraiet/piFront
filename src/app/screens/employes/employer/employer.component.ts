@@ -7,6 +7,7 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
+import { InvitationsService } from 'src/app/services/invitationsService/invitations.service';
 
 interface DialogData {
   employe: any;
@@ -33,10 +34,13 @@ export class EmployerComponent implements OnInit {
 
   constructor(
     private employerService: EmployerService,
+    private invitationsService: InvitationsService,
     private router: Router,
     private formBuilder: FormBuilder,
     public dialog: MatDialog
   ) {}
+
+  invitationsData: any;
 
   employesList: Employe[] = [];
   employe: any;
@@ -50,8 +54,13 @@ export class EmployerComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.employerService.getAll().subscribe((res: any) => {
-      this.employesList = res;
+    this.employerService.getAll().subscribe((resEmp: any) => {
+      this.employesList = resEmp;
+      this.invitationsService.getAll().subscribe((resInv: any) => {
+        this.invitationsData = resInv
+        console.log(this.employesList)
+        console.log(this.invitationsData)
+      });
     });
   }
 
@@ -77,6 +86,10 @@ export class EmployerComponent implements OnInit {
         );
       }
     });
+  }
+
+  addInvitation() {
+    this.router.navigate([`/add-invitation`]);
   }
 
   ngOnChanges(text: SimpleChanges) {

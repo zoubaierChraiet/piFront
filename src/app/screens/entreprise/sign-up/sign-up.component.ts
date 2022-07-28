@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { EntrepriseServiceService } from 'src/app/services/entrepriseService/entreprise-service.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-sign-up',
@@ -14,25 +16,34 @@ export class SignUpComponent implements OnInit {
     domaine: '',
     objetVoyage: '',
     tel: '',
+    mdp: ''
   });
 
   selectFormControl = new FormControl('objetVoyage');
 
   loading = false;
   submitted = false;
+  hide = true;
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {duration: 3000, verticalPosition: 'top'});
+  }
 
   constructor(
     private formBuilder: FormBuilder,
-    private entrepriseService: EntrepriseServiceService
+    private entrepriseService: EntrepriseServiceService,
+    private router: Router,
+    private _snackBar: MatSnackBar,
   ) {}
 
   ngOnInit(): void {
     this.signUpForm = this.formBuilder.group({
-      nom: [''],
-      matricule: [''],
+      nom: ['', [Validators.required]],
+      matricule: ['', [Validators.required]],
       domaine: [''],
-      objetVoyage: [''],
+      objetVoyage: ['', [Validators.required]],
       tel: [''],
+      mdp: ['']
     });
   }
 
@@ -43,10 +54,17 @@ export class SignUpComponent implements OnInit {
       objetVoyage: this.selectFormControl.value,
       tel: form.tel,
       domaineAcitivites: form.domaine,
+      mdp: form.mdp
     };
+    console.log(entrepriseData)
     this.entrepriseService.signUp(entrepriseData).subscribe((data) => {
-      console.log(data);
+      this.openSnackBar("Inscription effectuer avec succée", 'fermer');
+      this.router.navigate(['/log-in']);
     });
+  }
+
+  redirectToLogin() {
+    this.router.navigate(['/log-in'])
   }
 
   getErrorMessage() {}

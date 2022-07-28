@@ -1,0 +1,53 @@
+<div>
+  <h2 class="login-title">Se connecter</h2>
+  <mat-card class="form-card">
+    <div class="example-container">
+      <form [formGroup]="logInForm" (ngSubmit)="onSubmit(logInForm.value)">
+        <mat-form-field appearance="fill" class="fullWidth">
+          <mat-label>Tapez votre matricule</mat-label>
+          <input
+            matInput
+            formControlName="matricule"
+            name="matricule"
+            id="matricule"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Tapez votre mot de pass</mat-label>
+          <input
+            matInput
+            [type]="hide ? 'password' : 'text'"
+            required
+            formControlName="password"
+            name="password"
+            id="password"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+        </mat-form-field>
+        <div *ngIf="isError" style="
+        margin-bottom: 15px;
+        background: lightsalmon;
+        padding: 9px 10px;
+        border-radius: 5px;"> Matricule ou mot de passe incorrecte </div>
+        <button mat-flat-button color="primary">Se connecter</button>
+      </form>
+      <button
+        mat-flat-button
+        style="margin-top: 15px"
+        color="primary"
+        (click)="redirectToSignUp()"
+      >
+        Créer un compte
+      </button>
+    </div>
+  </mat-card>
+</div>

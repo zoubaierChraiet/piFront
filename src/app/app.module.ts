@@ -8,7 +8,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatDividerModule} from '@angular/material/divider';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './screens/login/login.component';
+import { LoginComponent } from './screens/entreprise/login/login.component';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
@@ -25,9 +25,29 @@ import { EmployerComponent } from './screens/employes/employer/employer.componen
 import { ModifierEmployeComponent } from './screens/employes/modifier-employe/modifier-employe.component';
 import { AddInvitationComponent } from './screens/invitations/add-invitation/add-invitation.component';
 import { UpdateEntrepriseComponent } from './screens/entreprise/update-entreprise/update-entreprise.component';
+import { NgChartsModule } from 'ng2-charts';
+import { DashboardComponent } from './screens/dashboard/dashboard.component';
+
+const user = window.localStorage.getItem('user');
+
+const isLoggedInRoutes = [
+  { path: 'add-invitation', component: AddInvitationComponent },
+  { path: 'liste-invitations', component: ListInvitationsComponent },
+  { path: 'update-invitation/:idInvitation', component: UpdateInvitationComponent },
+  { path: 'update-entreprise/:idEntreprise', component: UpdateEntrepriseComponent },
+  { path: 'update-employe/:idEmploye', component: ModifierEmployeComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'liste-employes', component: EmployerComponent },
+] 
+const notLoggedInRoutes = [
+  { path: 'sign-up', component: SignUpComponent },
+  { path: 'log-in', component: LoginComponent },
+  { path: 'update-employe/:idEmploye', component: ModifierEmployeComponent },
+  { path: '**', component: LoginComponent },
+]
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SignUpComponent, ListInvitationsComponent, UpdateInvitationComponent, EmployerComponent, ModifierEmployeComponent, AddInvitationComponent, UpdateEntrepriseComponent],
+  declarations: [AppComponent, LoginComponent, SignUpComponent, ListInvitationsComponent, UpdateInvitationComponent, EmployerComponent, ModifierEmployeComponent, AddInvitationComponent, UpdateEntrepriseComponent, DashboardComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -36,16 +56,7 @@ import { UpdateEntrepriseComponent } from './screens/entreprise/update-entrepris
     HttpClientModule,
     ReactiveFormsModule,
     MatTableModule,
-    RouterModule.forRoot([
-      { path: 'sign-up', component: SignUpComponent },
-      { path: 'add-invitation', component: AddInvitationComponent },
-      { path: 'liste-invitations', component: ListInvitationsComponent },
-      { path: 'update-invitation/:idInvitation', component: UpdateInvitationComponent },
-      { path: 'update-entreprise/:idEntreprise', component: UpdateEntrepriseComponent },
-      { path: 'update-employe/:idEmploye', component: ModifierEmployeComponent },
-      { path: 'liste-employes', component: EmployerComponent },
-      { path: '**', component: LoginComponent },
-    ]),
+    RouterModule.forRoot(user ? isLoggedInRoutes : notLoggedInRoutes),
     MatButtonModule,
     MatSnackBarModule,
     MatMenuModule,
@@ -56,6 +67,7 @@ import { UpdateEntrepriseComponent } from './screens/entreprise/update-entrepris
     MatFormFieldModule,
     MatDividerModule,
     MatInputModule,
+    NgChartsModule,
   ],
   exports: [
     MatButtonModule,

@@ -1,14 +1,21 @@
-<mat-toolbar> App Voyage </mat-toolbar>
+<mat-toolbar>
+  App Voyage
+  <span data-="userName" style="margin-left: 15px;"> {{userName}} </span>
+  <span class="takeTheRest"></span>
+  <button mat-raised-button color="warn" (click)="logout()" *ngIf="isLoggedIn ? true : false">
+    Se déconnecter
+  </button>
+</mat-toolbar>
 <mat-sidenav-container class="flexRow">
-  <mat-sidenav class="mat-elevation-z8">
-    <a>
+  <mat-sidenav class="mat-elevation-z8" *ngIf="isLoggedIn">
+    <a href="/dashboard">
       <button mat-button class="menu-button">
         <mat-icon>home</mat-icon>
         <span>Dashboard</span>
       </button>
     </a>
-    <a href="/update-entreprise/2">
-      <button mat-button class="menu-button">
+    <a>
+      <button mat-button class="menu-button" (click)="goToProfile()">
         <mat-icon>person</mat-icon>
         <span>Profile</span>
       </button>
