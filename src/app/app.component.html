@@ -1,8 +1,13 @@
 <mat-toolbar>
   App Voyage
-  <span data-="userName" style="margin-left: 15px;"> {{userName}} </span>
+  <span data-="userName" style="margin-left: 15px"> {{ userName }} </span>
   <span class="takeTheRest"></span>
-  <button mat-raised-button color="warn" (click)="logout()" *ngIf="isLoggedIn ? true : false">
+  <button
+    mat-raised-button
+    color="warn"
+    (click)="logout()"
+    *ngIf="isLoggedIn ? true : false"
+  >
     Se déconnecter
   </button>
 </mat-toolbar>
@@ -20,30 +25,26 @@
         <span>Profile</span>
       </button>
     </a>
-    <a href="/liste-employes">
-      <button mat-button class="menu-button">
+    <a>
+      <button mat-button class="menu-button" (click)="goToEmploye()">
         <mat-icon>supervised_user_circle</mat-icon>
         <span>Employés</span>
       </button>
     </a>
-    <a href="/liste-invitations">
-      <button mat-button class="menu-button">
+    <a>
+      <button mat-button class="menu-button" (click)="goToInvitation()">
         <mat-icon>insert_invitation</mat-icon>
         <span>Invitations</span>
       </button>
     </a>
-    <a href="/liste-employes">
-      <button mat-button class="menu-button">
-        <mat-icon>card_travel</mat-icon>
-        <span>Voyages</span>
-      </button>
-    </a>
-    <a href="/liste-employes">
-      <button mat-button class="menu-button">
-        <mat-icon>perm_phone_msg</mat-icon>
-        <span>Réclamation</span>
-      </button>
-    </a>
+    <button mat-button class="menu-button">
+      <mat-icon>card_travel</mat-icon>
+      <span>Voyages</span>
+    </button>
+    <button mat-button class="menu-button">
+      <mat-icon>perm_phone_msg</mat-icon>
+      <span>Réclamation</span>
+    </button>
     <mat-divider></mat-divider>
     <button mat-button class="menu-button">
       <mat-icon>help</mat-icon>

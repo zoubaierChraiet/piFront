@@ -31,4 +31,13 @@ export class AppComponent {
     const user = window.localStorage.getItem('user');
     this.router.navigate([`/update-entreprise/${JSON.parse(user as string)?.idEntreprise}`]);
   }
+
+  goToEmploye() {
+    this.router.navigate([`/liste-employes`]);
+  }
+
+  goToInvitation() {
+    this.router.navigate(["/liste-invitations"]);
+  }
+
 }
